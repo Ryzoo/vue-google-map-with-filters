@@ -2,6 +2,7 @@
     <v-dialog :value="true" fullscreen hide-overlay transition="dialog-bottom-transition">
         <v-card class="gmap-card">
             <GMapFilters
+                :lang-search-input="langSearchInput"
                 :filters="filters"
                 @filterChange="filterChange"
             ></GMapFilters>
@@ -88,6 +89,10 @@
 					return []
 				}
 			},
+			langSearchInput: {
+				type: String,
+				default: "Szukaj"
+			}
 		},
         computed:{
 			filteredItems(){

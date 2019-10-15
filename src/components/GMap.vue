@@ -4,6 +4,7 @@
         <Loader v-show="isLoading"></Loader>
         <v-fade-transition mode="in-out">
             <GMapFull
+                :lang-search-input="langSearchInput"
                 :minimal-map-lng="minimalMapLng"
                 :minimal-map-lat="minimalMapLat"
                 :minimal-map-zoom="minimalMapZoom"
@@ -58,6 +59,10 @@
 				type: Array,
 				default: ()=>{return []}
 			},
+			langSearchInput: {
+				type: String,
+				default: "Szukaj"
+			}
 		},
 		components: {
 			Loader,

@@ -1,7 +1,7 @@
 <template>
     <div class="gmaps-filters">
         <v-text-field
-            label="Wyszukaj"
+            :label="this.langSearchInput"
             v-model="search"
             hide-details
             solo
@@ -34,6 +34,10 @@
 					return []
 				}
 			},
+			langSearchInput: {
+				type: String,
+				default: "Szukaj"
+			}
 		},
         data(){
 		    return {

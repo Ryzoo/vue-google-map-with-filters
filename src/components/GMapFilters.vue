@@ -70,8 +70,11 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .gmaps-filters{
+        @media (max-width: 900px) {
+            display:none;
+        }
         width: 215px;
         padding: 10px;
         height: auto;

@@ -19,6 +19,8 @@
                     </v-toolbar-items>
                 </v-toolbar>
                 <GMapBaseMap
+                    @centerOnItem="centerOnItemForItemList"
+                    ref="baseMap"
                     @boundsChange="boundsChange"
                     :minimal-map-lng="minimalMapLng"
                     :minimal-map-lat="minimalMapLat"
@@ -28,7 +30,9 @@
             </section>
 
             <GMapAvailableItems
+                ref="itemList"
                 :items="filteredItemsWithView"
+                @centerOnItem="centerOnItem"
             >
                 <template v-slot:item="{ item }">
                     <slot name="item" :item="item"></slot>
@@ -112,6 +116,12 @@
             }
         },
 		methods: {
+			centerOnItem(items){
+				this.$refs.baseMap.centerOnItem(items);
+            },
+			centerOnItemForItemList(items){
+				this.$refs.itemList.centerOn(items);
+            },
 			boundsChange(bounds){
 				this.bounds = bounds;
             },

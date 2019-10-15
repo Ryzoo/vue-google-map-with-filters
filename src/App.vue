@@ -2,17 +2,17 @@
     <v-app>
         <v-content>
             <v-container
-                class="fill-height"
-                fluid
+                    class="fill-height"
+                    fluid
             >
                 <v-row
-                    align="center"
-                    justify="center"
+                        align="center"
+                        justify="center"
                 >
                     <v-col sm="12" md="6">
                         <h1 class="text-center">Google map demo</h1>
                         <GMap
-                            :items="[
+                                :items="[
                                 {
                                     name: 'Hala z prysznicem',
                                     facilities: [ 'prysznic' ],
@@ -25,7 +25,7 @@
                                     lng: 19.493958,
                                 }
                             ]"
-                            :filters="[
+                                :filters="[
                                 {
                                     name: 'Udogodnienia',
                                     items: [
@@ -43,14 +43,12 @@
                                     }
                                 }
                             ]"
-                            :minimal-map-lat="52.237049"
-                            :minimal-map-lng="21.017532"
-                            api-key="AIzaSyA6JVSpeceHjUZCvHJZtk8vTDlzlzjrRBI"
+                                :minimal-map-lat="52.237049"
+                                :minimal-map-lng="21.017532"
+                                api-key="AIzaSyA6JVSpeceHjUZCvHJZtk8vTDlzlzjrRBI"
                         >
-                            <template v-slot:item="slotProps" >
-                                <div class="item-element">
-                                    {{slotProps.item.name}}
-                                </div>
+                            <template v-slot:item="slotProps">
+                                {{slotProps.item.name}}
                             </template>
                         </GMap>
                     </v-col>

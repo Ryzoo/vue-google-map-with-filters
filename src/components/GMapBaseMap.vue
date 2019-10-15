@@ -40,6 +40,25 @@
             }
         },
         methods:{
+			centerOnItem(item){
+				if(!item) return;
+
+			    let indexOfMarker = -1;
+
+			    this.items.map((x, index) => {
+			    	if(x.lat === item.lat && x.lng === item.lng){
+						indexOfMarker = index;
+                    }
+                });
+
+			    if(indexOfMarker < 0)
+			    	return;
+
+				this.markers.map(x => x.setAnimation(null));
+			    this.markers[indexOfMarker]
+                    .setAnimation(this.maps.Animation.BOUNCE);
+				this.fullMap.panTo(this.markers[indexOfMarker].getPosition());
+            },
 			loadMap(){
 				this.fullMap = new this.maps.Map(document.getElementById('fullBaseMap'), {
 					center: {lat: this.minimalMapLat, lng: this.minimalMapLng},
@@ -59,6 +78,15 @@
 					swLng: bounds.getSouthWest().lng()
                 });
             },
+			centerOnMarker(marker){
+                let item = this.getItemFromMarker(marker);
+
+                if(item)
+                    this.$emit('centerOnItem', item);
+            },
+			getItemFromMarker(marker){
+			    return this.items.find(x => x === marker.item);
+            },
             buildMarkers(){
 				this.resetMarkers();
 				this.items.map(i => {
@@ -67,14 +95,22 @@
 							lat: i.lat,
                             lng: i.lng
                         },
-						title: i.name
+						title: i.name,
+                        item: i
 					});
 					marker.setMap(this.fullMap);
+					this.maps.event
+                        .addListener(marker, 'click', ()=>{
+                        	this.centerOnMarker(marker);
+                        });
 					this.markers.push(marker);
                 })
             },
 			resetMarkers(){
-				this.markers.map(e=>e.setMap(null)) ;
+				this.markers.map(e=>{
+					e.setMap(null);
+					this.maps.event.clearListeners(e, 'click');
+				}) ;
 				this.markers = [];
             }
         },

@@ -45,7 +45,7 @@
                             ]"
                                 :minimal-map-lat="52.237049"
                                 :minimal-map-lng="21.017532"
-                                api-key="AIzaSyA6JVSpeceHjUZCvHJZtk8vTDlzlzjrRBI"
+                                api-key="---"
                         >
                             <template v-slot:item="slotProps">
                                 {{slotProps.item.name}}
